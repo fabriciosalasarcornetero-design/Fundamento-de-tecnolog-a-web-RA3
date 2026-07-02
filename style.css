@@ -4,15 +4,23 @@
     box-sizing: border-box
 }
 
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #071220 0%, #111f31 45%, #16263d 100%);
     color: #fff;
     line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
 }
 
-html {
-    scroll-behavior: smooth
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .navbar {
@@ -155,7 +163,14 @@ nav a:hover {
 }
 
 section {
-    padding: 70px 8%
+    padding: 70px 8%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.hero {
+    max-width: none;
+    margin: 0;
 }
 
 .cards {
@@ -676,5 +691,149 @@ footer {
     .seccion-header {
         flex-direction: column;
         align-items: start
+    }
+}
+
+/* Tablets: layout se mantiene en 2 columnas cómodas, ajustes de espaciado */
+@media(max-width: 1024px) {
+    section {
+        padding: 55px 6%
+    }
+
+    .categorias {
+        padding: 40px 6%
+    }
+}
+
+/* Celulares: reducir espaciados, agrandar objetivos táctiles, evitar texto apretado */
+@media(max-width: 480px) {
+    section {
+        padding: 40px 5%
+    }
+
+    .categorias {
+        padding: 35px 5%;
+        gap: 14px
+    }
+
+    .navbar {
+        padding: 12px 5%
+    }
+
+    .logo {
+        width: 46px;
+        height: 46px
+    }
+
+    .logo-area h1 {
+        font-size: 1.3rem
+    }
+
+    .logo-area p {
+        font-size: .78rem
+    }
+
+    #btnCarrito {
+        padding: 10px 14px;
+        font-size: .9rem
+    }
+
+    .hero {
+        min-height: 65vh;
+        padding: 28px 20px
+    }
+
+    .hero h2 {
+        font-size: 1.7rem
+    }
+
+    .hero p {
+        font-size: 1rem
+    }
+
+    .hero-buttons a {
+        display: block;
+        margin: 8px 0;
+        padding: 14px 20px
+    }
+
+    .categorias .categoria-card {
+        padding: 18px;
+        font-size: .92rem
+    }
+
+    .cards {
+        grid-template-columns: 1fr
+    }
+
+    .filtros button {
+        padding: 11px 14px;
+        font-size: .88rem
+    }
+
+    .producto img {
+        height: 180px
+    }
+
+    .producto h3 {
+        font-size: 1rem;
+        min-height: auto
+    }
+
+    .qty-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem
+    }
+
+    .modal {
+        padding: 10px
+    }
+
+    .modal-contenido {
+        padding: 18px;
+        border-radius: 18px
+    }
+
+    .modal-actions button {
+        width: 100%;
+        justify-content: center
+    }
+
+    .modal-actions {
+        flex-direction: column
+    }
+
+    .alerta-flotante,
+    .mensaje {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        text-align: center
+    }
+
+    footer {
+        padding: 30px 20px
+    }
+
+    footer h3 {
+        font-size: 1.3rem
+    }
+}
+
+/* Pantallas muy angostas (celulares antiguos o en modo compacto) */
+@media(max-width: 360px) {
+    .logo-area h1 {
+        font-size: 1.15rem
+    }
+
+    .hero h2 {
+        font-size: 1.5rem
+    }
+
+    nav {
+        gap: 14px;
+        font-size: .92rem
     }
 }
