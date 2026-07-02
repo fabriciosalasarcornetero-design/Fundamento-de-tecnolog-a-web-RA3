@@ -122,14 +122,8 @@
 
   <section id="contacto" class="contacto">
     <h2>Contáctanos</h2>
-    <form id="formContacto" novalidate>
-      <input type="text" id="nombreContacto" name="nombre" placeholder="Nombre" required>
-      <input type="email" id="emailContacto" name="email"
-        placeholder="Correo electrónico, por ejemplo: example@dominio.com" required>
-      <textarea id="mensajeContacto" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
-      <button type="submit">Enviar mensaje</button>
-      <div id="contacto-respuesta"></div>
-    </form>
+    <!-- Módulo de formulario interactivo construido con React (ver contacto-react.js) -->
+    <div id="contactoRoot"></div>
   </section>
 
   <div id="alertaFlotante" class="alerta-flotante" role="status" aria-live="polite"></div>
@@ -167,6 +161,12 @@
       </div>
     </div>
   </div>
+
+  <!-- React (framework Front-End) para el módulo de formulario interactivo -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" src="contacto-react.js"></script>
 
   <script src="script.js"></script>
 </body>
