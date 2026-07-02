@@ -351,18 +351,6 @@ function finalizarCompra() {
     renderCarrito();
 }
 
-function validarCorreo(correo) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
-}
-
-function mostrarRespuesta(texto, tipo = 'exito') {
-    const respuesta = document.getElementById('contacto-respuesta');
-    if (!respuesta) return;
-
-    respuesta.textContent = texto;
-    respuesta.style.color = tipo === 'error' ? '#f87171' : '#34d399';
-}
-
 function mostrarAlertaFlotante(texto) {
     const alerta = document.getElementById('alertaFlotante');
     if (!alerta) return;
@@ -374,36 +362,6 @@ function mostrarAlertaFlotante(texto) {
     mostrarAlertaFlotante.timeoutId = setTimeout(() => {
         alerta.classList.remove('show');
     }, 2600);
-}
-
-function enviarContacto(event) {
-    if (event) {
-        event.preventDefault();
-    }
-
-    const form = document.getElementById('formContacto');
-    const nombreInput = document.getElementById('nombreContacto');
-    const emailInput = document.getElementById('emailContacto');
-    const mensajeInput = document.getElementById('mensajeContacto');
-
-    const nombre = nombreInput?.value.trim() || '';
-    const email = emailInput?.value.trim() || '';
-    const mensaje = mensajeInput?.value.trim() || '';
-
-    if (!nombre || !email || !mensaje) {
-        mostrarRespuesta('Completa todos los campos para enviar tu mensaje.', 'error');
-        return;
-    }
-
-    if (!validarCorreo(email)) {
-        mostrarRespuesta('Ingresa un correo electrónico válido.', 'error');
-        return;
-    }
-
-    mostrarRespuesta(`Gracias ${nombre}, pronto te responderemos.`);
-    mostrarAlertaFlotante('¡Mensaje enviado con éxito!');
-
-    if (form) form.reset();
 }
 
 function seleccionarCategoria(categoria) {
@@ -487,11 +445,6 @@ function inicializar() {
         });
     }
 
-    const formContacto = document.getElementById('formContacto');
-    if (formContacto) {
-        formContacto.addEventListener('submit', enviarContacto);
-    }
-
     const listaCarrito = document.getElementById('lista');
     if (listaCarrito) {
         listaCarrito.addEventListener('click', (event) => {
@@ -530,7 +483,6 @@ function inicializar() {
     }
 }
 
-window.enviarContacto = enviarContacto;
 window.aplicarCupon = aplicarCupon;
 window.vaciar = vaciar;
 window.finalizarCompra = finalizarCompra;
