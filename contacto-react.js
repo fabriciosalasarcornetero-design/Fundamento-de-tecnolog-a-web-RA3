@@ -1,20 +1,7 @@
-/**
- * Módulo de formulario interactivo (RA3)
- * Implementado con React (vía CDN, sin bundler) para cumplir con el requisito
- * de "Frameworks Front-End Avanzados: React y Gestión de Estado" de la guía.
- *
- * Componentes reutilizables:
- *  - FormField: input/textarea genérico con etiqueta, mensaje de error y soporte ARIA.
- *  - Button: botón con estado de carga.
- *  - Alert: mensaje de éxito/error dentro del propio formulario.
- *
- * Gestión de estado: useState (valores, errores, estado de envío) y
- * useEffect (validación reactiva mientras el usuario escribe, después del
- * primer intento de envío, y contador de caracteres del mensaje).
- */
+
 const { useState, useEffect, useCallback } = React;
 
-// ---------- Reglas de validación (reutilizables) ----------
+
 const REGLAS = {
   nombre: (valor) => {
     if (!valor.trim()) return 'El nombre es obligatorio.';
@@ -35,7 +22,7 @@ const REGLAS = {
   },
 };
 
-// ---------- Componente reutilizable: campo de formulario ----------
+
 function FormField({ id, label, type = 'text', as = 'input', value, onChange, onBlur, error, touched, placeholder, maxLength, helperText }) {
   const Tag = as; // 'input' o 'textarea'
   const mostrarError = Boolean(touched && error);
@@ -66,7 +53,7 @@ function FormField({ id, label, type = 'text', as = 'input', value, onChange, on
   );
 }
 
-// ---------- Componente reutilizable: botón ----------
+
 function Button({ children, disabled, loading, type = 'submit' }) {
   return React.createElement(
     'button',
@@ -75,7 +62,7 @@ function Button({ children, disabled, loading, type = 'submit' }) {
   );
 }
 
-// ---------- Componente reutilizable: alerta ----------
+
 function Alert({ tipo, texto }) {
   if (!texto) return null;
   return React.createElement(
@@ -85,7 +72,7 @@ function Alert({ tipo, texto }) {
   );
 }
 
-// ---------- Componente principal: formulario de contacto ----------
+
 function ContactoForm() {
   const [valores, setValores] = useState({ nombre: '', email: '', mensaje: '' });
   const [errores, setErrores] = useState({ nombre: '', email: '', mensaje: '' });
@@ -93,7 +80,7 @@ function ContactoForm() {
   const [enviando, setEnviando] = useState(false);
   const [feedback, setFeedback] = useState({ tipo: '', texto: '' });
 
-  // Validación reactiva: se recalcula cada vez que cambian los valores.
+
   useEffect(() => {
     setErrores({
       nombre: REGLAS.nombre(valores.nombre),
@@ -125,7 +112,7 @@ function ContactoForm() {
     setEnviando(true);
     setFeedback({ tipo: '', texto: '' });
 
-    // Simulación de envío asíncrono (no hay backend en este proyecto).
+   
     setTimeout(() => {
       setEnviando(false);
       setFeedback({ tipo: 'exito', texto: `Gracias ${valores.nombre.trim()}, pronto te responderemos.` });
@@ -181,7 +168,6 @@ function ContactoForm() {
   );
 }
 
-// ---------- Montaje del módulo React en el DOM existente ----------
 document.addEventListener('DOMContentLoaded', () => {
   const contenedor = document.getElementById('contactoRoot');
   if (!contenedor) return;
